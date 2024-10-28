@@ -2,7 +2,7 @@
 #include <vector>
 #include <cstdlib> // Needed for rand() and srand()
 #include "Weapon.h"
-#include "SuperWeapon.h"
+#include "SuperWeapon.h"  //this is the coolest game ever
 
 using namespace std;
 
