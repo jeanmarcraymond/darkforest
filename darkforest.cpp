@@ -3,35 +3,39 @@
 #include <cstdlib> // Needed for rand() and srand()
 #include "Weapon.h"
 #include "SuperWeapon.h"  //this is the coolest game ever
-
+#include "WimpyWeapon.h"
 using namespace std;
 
 int health  = 100;
 
-int random1or2(){
+int random(){
        // Seed the random number generator with the current time
     srand(static_cast<unsigned int>(time(0)));
 
     // Generate a random number in the range 1-2
-    int random_num = rand() % 2 + 1;
+    int random_num = rand() % 3 + 1;
 
     return random_num;
 }
 
 Weapon* search(){
 
-    cout << "You found a sword!\n";
     
-    int rand = random1or2();
+    
+    int rand = random();
     Weapon* weapon;
 
     if(rand == 1){
        weapon = new Weapon("sword",10);
+       
+    }
+    else if(rand == 2){
+       weapon = new SuperWeapon("Supersword",1);
     }
     else{
-       weapon = new SuperWeapon("sword",1);
+        weapon = new WimpyWeapon("WimpySword");
     }
-    
+    cout << "You found a "  << weapon->getDescription() << "!\n";
     return weapon;
 }
 
