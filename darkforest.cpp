@@ -8,12 +8,12 @@ using namespace std;
 
 int health  = 100;
 
-int random(){
+int random_in_range(int range){
        // Seed the random number generator with the current time
     srand(static_cast<unsigned int>(time(0)));
 
     // Generate a random number in the range 1-2
-    int random_num = rand() % 3 + 1;
+    int random_num = rand() % range + 1;
 
     return random_num;
 }
@@ -22,7 +22,7 @@ Weapon* search(){
 
     
     
-    int rand = random();
+    int rand = random_in_range(3);
     Weapon* weapon;
 
     if(rand == 1){
