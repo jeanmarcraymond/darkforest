@@ -19,6 +19,10 @@ public:
         return damage_;
     }
 
+    string getName(){
+        return name_;
+    }
+
     string getDescription(){
         return name_ + "," + to_string(damage_);
     }
