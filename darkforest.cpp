@@ -95,11 +95,21 @@ int main() {
             }
         }
         else if("3" == selection){
-            
+            for(int i=0;i<inventory.size();i++){
+                cout << "Please choose a weapon!\n" << "choose " << i << " for the " << inventory[i]->getName() << " weapon\n" ;
+            }
+            int chosenNum=0;
+            cin >> chosenNum;
+            for(int x=0;x<inventory.size();x++){
+                if(chosenNum==x){
+                    cout << "you have chosen the " << inventory[chosenNum]->getName() << " weapon!\n";
+                    break;
+                }
+            }
             Weapon *weapon = nullptr;
 
             if (inventory.size() > 0){
-                weapon = inventory[0];
+                weapon = inventory[chosenNum];
             }
             goIntoTheForest(weapon);
         }
