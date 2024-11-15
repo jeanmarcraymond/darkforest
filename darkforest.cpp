@@ -94,18 +94,16 @@ int main() {
                 cout << inventory[i]->getDescription() << "\n";
             }
         }
+        
         else if("3" == selection){
+            cout << "Please choose a weapon!\n";
             for(int i=0;i<inventory.size();i++){
-                cout << "Please choose a weapon!\n" << "choose " << i << " for the " << inventory[i]->getName() << " weapon\n" ;
+                cout << "choose " << i << " for the " << inventory[i]->getName() << " weapon\n" ;
             }
             int chosenNum=0;
             cin >> chosenNum;
-            for(int x=0;x<inventory.size();x++){
-                if(chosenNum==x){
-                    cout << "you have chosen the " << inventory[chosenNum]->getName() << " weapon!\n";
-                    break;
-                }
-            }
+            cout << "you have chosen the " << inventory[chosenNum]->getName() << " weapon!\n";
+                 
             Weapon *weapon = nullptr;
 
             if (inventory.size() > 0){
