@@ -18,6 +18,7 @@ class SuperWeapon : public Weapon{
 
 
         int attack() {
+            Weapon::attack();
 
             int superDamage = doubler_ * damage_;
             doubler_ = doubler_ * 2;

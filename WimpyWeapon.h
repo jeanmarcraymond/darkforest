@@ -16,6 +16,7 @@ class WimpyWeapon : public Weapon{
 
 
         int attack() {
+            Weapon::attack(); 
 
             cout << "wimpy j'attack damange!" << damage_ << "\n";
 
