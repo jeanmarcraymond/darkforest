@@ -1,14 +1,14 @@
 #include <iostream>
 #include <vector>
-#include "getch.h"
-//include <conio.h>
+//#include "getch.h"
+#include <conio.h>
 
 
 const int MAP_WIDTH = 20;
 const int MAP_HEIGHT = 10;
 
 void displayMap(const std::vector<std::string>& map, int coordX, int coordY){
-    system("clear");
+    system("cls");
 
     for(int y = 0; y < MAP_HEIGHT; y++){
         for(int x=0; x < MAP_WIDTH; x++){
@@ -31,12 +31,12 @@ int main(){
    
     while(true){
         displayMap(map, coordx, coordy);
-        char ch = _getch();
+        char ch = getch();
         switch (ch) {
-            case 'w': coordx ++; break;
-            case 's': coordx --; break;
-            case 'a': coordy --; break;
-            case 'd': coordy ++; break;
+            case 'w': if(coordy!=MAP_HEIGHT-MAP_HEIGHT){coordy --;} break;
+            case 's': if(coordy!=MAP_HEIGHT-1){coordy ++;} break;
+            case 'a': if(coordx!=MAP_WIDTH-MAP_WIDTH){coordx --;} break;
+            case 'd': if(coordx!=MAP_WIDTH-1){coordx ++;} break;
         }
     }
 }
