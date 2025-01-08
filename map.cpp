@@ -3,9 +3,8 @@
 #include "getch.h"
 #include "WimpyWeapon.h"
 #include "Mappable.h"
-//#include <conio.h>
+#include <conio.h>
 #include <fstream>
-
 
 const int MAP_WIDTH = 20;
 const int MAP_HEIGHT = 10;
