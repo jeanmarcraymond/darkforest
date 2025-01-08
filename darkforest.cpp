@@ -80,7 +80,6 @@ int main() {
         cout << "[1] to search around you\n";
         cout << "[2] to view inventory\n";
         cout << "[3] go into the forest\n";
-        cout << "[4] remove broken weapons";
         cout << "[x] to exit\n";
 
         cin >> selection;
@@ -113,28 +112,7 @@ int main() {
             }
             goIntoTheForest(weapon);
         }
-
-        else if ("4" == selection){
-            
-cout << "Please choose a weapon to remove from your inventory(x to exit):\n";
-for(int i=0;i<inventory.size();i++){
-                listBrokenWeapons(inventory);
-            }
-            string R = "";
-            int D = 0;
-            cin >> D;
-
-cout << "you have chosen the " << inventory[D]->getName() << " weapon to delete\n" << "Are you sure that you want to delete the " << inventory[D]->getName() << " weapon?\n";
-
-cin >> R;
-
-cout << "Now deleting the " << inventory[D]->getName() << " weapon\n";
-
-inventory.remove(D);
-
-        }
-
-        
+    
         if(health <= 0){
             cout << "you died!\n";
             break;
