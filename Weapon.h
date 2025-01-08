@@ -3,12 +3,13 @@
 
 #include <iostream>
 #include <string>
+#include "Mappable.h"
 
 using namespace std;
 
 int lastATK = 0;
 
-class Weapon{
+class Weapon : public Mappable{
 
 public:
     Weapon(string name, int damage){
@@ -51,10 +52,28 @@ public:
         return false;
     }
 
+    int getX() const override{
+        return x_;
+    }
+    int getY() const override{
+        return y_;
+    }
+    void setX(int x) override {
+        x_ = x;
+    }
+    void setY(int y) override {
+        y_ = y;
+    }
+    char getSymbol() const override {
+        return 'w';
+    }
+
 protected:
     string name_;
     int damage_;
     int durability_;
+
+    int x_,y_;
 };
 
 #endif //WEAPON
