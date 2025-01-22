@@ -65,7 +65,8 @@ public:
         y_ = y;
     }
     char getSymbol() const override {
-        return 'w';
+        return 'W';
+        
     }
 
 protected:

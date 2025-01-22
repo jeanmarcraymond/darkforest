@@ -34,9 +34,14 @@ class SuperWeapon : public Weapon{
 
             return superDamage_;
         }
+        
+        
 
         string getDescription(){
             return name_ + "," + to_string(superDamage_);
+        }
+        char getSymbol() const override {
+            return 's';
         }
 
 };
