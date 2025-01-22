@@ -22,6 +22,10 @@ class WimpyWeapon : public Weapon{
 
             return damage_;
         }
+        char getSymbol() const override {
+            return 'w';
+        
+        }
 
 };
 

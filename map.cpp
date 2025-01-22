@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
-#include "getch.h"
+#include "Weapon.h"
 #include "WimpyWeapon.h"
+#include "SuperWeapon.h"
 #include "Mappable.h"
 #include <conio.h>
 #include <fstream>
@@ -10,25 +11,46 @@ const int MAP_WIDTH = 20;
 const int MAP_HEIGHT = 10;
 const std::string FILE_NAME = "darkforest.dat";
 
-void displayMap(const std::vector<std::string>& map, int coordX, int coordY, Mappable* m){
-    system("clear");
-
+void displayMap( std::vector<Mappable*>& mappables, int coordX, int coordY){
+    system("cls");
+    int i=0;
     for(int y = 0; y < MAP_HEIGHT; y++){
         for(int x=0; x < MAP_WIDTH; x++){
             if(coordX == x && coordY == y){
                 std::cout << 'X';
-            }else if(m->getX() == x && m->getY() == y){
-                std::cout << m->getSymbol();
-            }else{
+                for(Mappable* m:mappables){
+                    
+                    if (m->getY() == coordY && m->getX() == coordX){
+                     mappables.erase(mappables.begin() + i);//error
+                     
+                     
+                    }
+                    i++;
+                }
+            } 
+
+            else{
+                bool found=false;
+                for(Mappable* m:mappables){
+                    
+                    if (m->getY() == y && m->getX() == x){
+                     std::cout << m->getSymbol();   
+                     found=true;
+                    }
+                }
+                if (!found){
                 std::cout << '.';
+                }
             }
+             
         }
+
     std::cout << "\n";
     }
     
 }
 
-void saveGame(const std::vector<std::string>& map, int coordx, int coordy){
+void saveGame(int coordx, int coordy){
     std::ofstream outFile(FILE_NAME);
 
     outFile << MAP_HEIGHT << " " << MAP_WIDTH << "\n";
@@ -39,7 +61,7 @@ void saveGame(const std::vector<std::string>& map, int coordx, int coordy){
 
 }
 
-bool loadGame(std::vector<std::string>& map, int& coordx, int& coordy){
+bool loadGame(int& coordx, int& coordy){
     std::ifstream inFile(FILE_NAME);
     if(!inFile){
       //  std::cerr << "Error loading " << FILE_NAME << "\n";
@@ -58,17 +80,24 @@ int main(){
 
     int coordx = 0, coordy = 0;
     WimpyWeapon ww("wimpy weapon");
+    SuperWeapon sw("super weapon", 1);
+    Weapon w("weapon", 1);
 
-    ww.setX(3);
-    ww.setY(3);
+    std::vector<Mappable*> mappables={&ww, &sw, &w};
+    
 
-    std::vector<std::string> map(MAP_HEIGHT, std::string(MAP_WIDTH,'.'));
     char ch;
 
-    loadGame(map, coordx, coordy);
+        ww.setX(3);
+    ww.setY(3);
+    sw.setX(2);
+    sw.setY(7);
+    w.setX(8);
+    w.setY(6);
+    loadGame(coordx, coordy);
 
     while(ch != 'x'){
-        displayMap(map, coordx, coordy, &ww);
+        displayMap(mappables, coordx, coordy);
         ch = getch();
         switch (ch) {
             case 'w': if(coordy!=MAP_HEIGHT-MAP_HEIGHT){coordy --;} break;
@@ -79,7 +108,7 @@ int main(){
                 std::cout << "Save Game (y/n)?:";
 
                 if (getch() == 'y'){
-                    saveGame(map, coordx, coordy);
+                    saveGame(coordx, coordy);
                 }
                 break;
         }
