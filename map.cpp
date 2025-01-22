@@ -18,14 +18,15 @@ void displayMap( std::vector<Mappable*>& mappables, int coordX, int coordY){
         for(int x=0; x < MAP_WIDTH; x++){
             if(coordX == x && coordY == y){
                 std::cout << 'X';
-                for(Mappable* m:mappables){
-                    
+                
+                auto it = mappables.begin();
+                while(it != mappables.end()){
+                    Mappable* m = *it;
                     if (m->getY() == coordY && m->getX() == coordX){
-                     mappables.erase(mappables.begin() + i);//error
-                     
-                     
+                        it = mappables.erase(it);
+                    } else {
+                        ++it;
                     }
-                    i++;
                 }
             } 
 
